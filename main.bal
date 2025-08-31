@@ -45,12 +45,29 @@ function getMySQLConnectionString() returns string {
         return envUri;
     }
     
-    // Fallback for Railway MySQL format
-    string? host = os:getEnv("MYSQL_HOST");
-    string? port = os:getEnv("MYSQL_PORT");
-    string? user = os:getEnv("MYSQL_USER");
-    string? password = os:getEnv("MYSQL_PASSWORD");
-    string? database = os:getEnv("MYSQL_DATABASE");
+    // Try Railway MySQL environment variables first
+    string? host = os:getEnv("MYSQLHOST");
+    string? port = os:getEnv("MYSQLPORT");
+    string? user = os:getEnv("MYSQLUSER");
+    string? password = os:getEnv("MYSQLPASSWORD");
+    string? database = os:getEnv("MYSQLDATABASE");
+    
+    // Fallback to standard MySQL environment variables
+    if host is () {
+        host = os:getEnv("MYSQL_HOST");
+    }
+    if port is () {
+        port = os:getEnv("MYSQL_PORT");
+    }
+    if user is () {
+        user = os:getEnv("MYSQL_USER");
+    }
+    if password is () {
+        password = os:getEnv("MYSQL_PASSWORD");
+    }
+    if database is () {
+        database = os:getEnv("MYSQL_DATABASE");
+    }
     
     if host is string && user is string && password is string && database is string {
         return "jdbc:mysql://" + host + ":" + (port is string ? port : "3306") + 
@@ -68,7 +85,7 @@ function getMySQLConnectionString() returns string {
         io:println("3. Or use the provided env.local.dev file");
     }
     
-    error connectError = error("MySQL connection required - please set MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE environment variables");
+    error connectError = error("MySQL connection required - please set MYSQLHOST, MYSQLUSER, MYSQLPASSWORD, and MYSQLDATABASE environment variables (Railway) or MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE (standard)");
     panic connectError;
 }
 
@@ -88,11 +105,25 @@ function getMySQLConnectionStringNoDB() returns string {
         return envUri;
     }
     
-    // Fallback for Railway MySQL format
-    string? host = os:getEnv("MYSQL_HOST");
-    string? port = os:getEnv("MYSQL_PORT");
-    string? user = os:getEnv("MYSQL_USER");
-    string? password = os:getEnv("MYSQL_PASSWORD");
+    // Try Railway MySQL environment variables first
+    string? host = os:getEnv("MYSQLHOST");
+    string? port = os:getEnv("MYSQLPORT");
+    string? user = os:getEnv("MYSQLUSER");
+    string? password = os:getEnv("MYSQLPASSWORD");
+    
+    // Fallback to standard MySQL environment variables
+    if host is () {
+        host = os:getEnv("MYSQL_HOST");
+    }
+    if port is () {
+        port = os:getEnv("MYSQL_PORT");
+    }
+    if user is () {
+        user = os:getEnv("MYSQL_USER");
+    }
+    if password is () {
+        password = os:getEnv("MYSQL_PASSWORD");
+    }
     
     if host is string && user is string && password is string {
         return "jdbc:mysql://" + host + ":" + (port is string ? port : "3306") + 
@@ -110,7 +141,7 @@ function getMySQLConnectionStringNoDB() returns string {
         io:println("3. Or use the provided env.local.dev file");
     }
     
-    error connectError = error("MySQL connection required - please set MYSQL_HOST, MYSQL_USER, and MYSQL_PASSWORD environment variables");
+    error connectError = error("MySQL connection required - please set MYSQLHOST, MYSQLUSER, and MYSQLPASSWORD environment variables (Railway) or MYSQL_HOST, MYSQL_USER, and MYSQL_PASSWORD (standard)");
     panic connectError;
 }
 
@@ -119,8 +150,11 @@ function bootstrapDatabase() returns error? {
     io:println("Bootstrapping database...");
     
     // Check if we're using Railway MySQL or local MySQL
-    string? mysqlHost = os:getEnv("MYSQL_HOST");
-    io:println("DEBUG: MYSQL_HOST = ", mysqlHost);
+    string? mysqlHost = os:getEnv("MYSQLHOST");
+    if mysqlHost is () {
+        mysqlHost = os:getEnv("MYSQL_HOST");
+    }
+    io:println("DEBUG: MYSQLHOST = ", mysqlHost);
     io:println("DEBUG: DATABASE_NAME = ", DATABASE_NAME);
     if (mysqlHost is string && mysqlHost != "" && mysqlHost != "localhost") {
         // Railway MySQL - try to create database if it doesn't exist

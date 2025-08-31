@@ -27,10 +27,10 @@ A Ballerina-based health records management system deployed on Railway.
 
 4. **Environment Variables** (Railway sets these automatically for internal communication):
    ```
-   MYSQL_HOST=mysql.railway.internal (auto-set by Railway)
-   MYSQL_USER=root
-   MYSQL_PASSWORD=your-railway-mysql-password
-   MYSQL_DATABASE=railway
+   MYSQLHOST=mysql.railway.internal (auto-set by Railway)
+   MYSQLUSER=root
+   MYSQLPASSWORD=your-railway-mysql-password
+   MYSQLDATABASE=railway
    ```
 
 ## 📋 Project Structure
@@ -46,10 +46,10 @@ A Ballerina-based health records management system deployed on Railway.
 
 ### Railway Internal Communication
 When both backend and MySQL are on Railway, these are automatically set:
-- `MYSQL_HOST` - `mysql.railway.internal` (auto-set by Railway)
-- `MYSQL_USER` - `root`
-- `MYSQL_PASSWORD` - Railway MySQL password
-- `MYSQL_DATABASE` - `railway`
+- `MYSQLHOST` - `mysql.railway.internal` (auto-set by Railway)
+- `MYSQLUSER` - `root`
+- `MYSQLPASSWORD` - Railway MySQL password
+- `MYSQLDATABASE` - `railway`
 
 ### Optional
 - `MYSQL_PORT` - MySQL port (default: 3306)
