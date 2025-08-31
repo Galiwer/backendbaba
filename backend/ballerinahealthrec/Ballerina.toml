@@ -9,10 +9,17 @@ observabilityIncluded = true
 
 [[dependency]]
 org = "ballerinax"
-name = "mongodb"
-version = "5.1.0"
+name = "mysql"
+version = "1.10.0"
 
 [[dependency]]
 org = "ballerina"
 name = "uuid"
 version = "1.0.0"
+
+[platform]
+[[platform.java21.dependency]]
+path = "lib/mysql-connector-j-8.3.0.jar"
+groupId = "com.mysql"
+artifactId = "mysql-connector-j"
+version = "8.3.0"
