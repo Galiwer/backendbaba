@@ -1,0 +1,45 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "password": "securePassword123",
+  "gender": "male",
+  "dateOfBirth": "1995-06-15",
+  "phoneNumber": "+1234567890",
+  "vaccines": [
+    {
+      "name": "COVID-19",
+      "dose": "1st",
+      "dueDate": "2024-01-15",
+      "isCustom": false,
+      "offsetMonths": 0,
+      "received": true,
+      "receivedDate": "2024-01-10"
+    },
+    {
+      "name": "COVID-19",
+      "dose": "2nd",
+      "dueDate": "2024-02-15",
+      "isCustom": false,
+      "offsetMonths": 1,
+      "received": true,
+      "receivedDate": "2024-02-12"
+    },
+    {
+      "name": "Flu Shot",
+      "dose": "Annual",
+      "dueDate": "2024-10-01",
+      "isCustom": false,
+      "offsetMonths": 0,
+      "received": false
+    },
+    {
+      "name": "Custom Vaccine",
+      "dose": "1st",
+      "dueDate": "2024-03-20",
+      "isCustom": true,
+      "offsetMonths": 0,
+      "received": false
+    }
+  ]
+}

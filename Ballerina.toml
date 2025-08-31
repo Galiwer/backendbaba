@@ -1,0 +1,24 @@
+[package]
+org = "himasha_valantina"
+name = "healthRecords"
+version = "0.1.0"
+distribution = "2201.12.7"
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "mysql"
+version = "1.10.0"
+
+[[dependency]]
+org = "ballerina"
+name = "uuid"
+version = "1.0.0"
+
+[platform]
+[[platform.java21.dependency]]
+groupId = "com.mysql"
+artifactId = "mysql-connector-j"
+version = "8.3.0"
