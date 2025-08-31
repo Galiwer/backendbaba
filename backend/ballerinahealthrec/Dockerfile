@@ -23,9 +23,6 @@ ENV PATH="/usr/lib/ballerina/bin:${PATH}"
 COPY Ballerina.toml .
 COPY Dependencies.toml* ./
 
-# Copy lib directory (contains MySQL connector JAR)
-COPY lib/ ./lib/
-
 # Copy source files
 COPY *.bal ./
 
