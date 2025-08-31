@@ -1,0 +1,23 @@
+Compiling source
+	himasha_valantina/healthRecords:0.1.0
+HINT [main.bal:(237:15,237:28)] unnecessary condition: expression will always evaluate to 'true'
+HINT [main.bal:(261:5,261:5)] concurrent calls will not be made to this method since the method is not an 'isolated' method
+HINT [main.bal:(798:5,798:5)] concurrent calls will not be made to this method since the method is not an 'isolated' method
+WARNING [main.bal:(1000:13,1000:44)] unused variable 'seededDefaults'
+HINT [main.bal:(1796:38,1796:74)] unnecessary condition: expression will always evaluate to 'true'
+
+Running executable
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2 (file:/Users/omindukumara/Documents/other/babapotha/backend/ballerina_healthrec/target/bin/healthRecords.jar)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+Initializing database and collections...
+Collection 'users' is ready
+Collection 'diseases' is ready
+Collection 'appointments' is ready
+Collection 'bmi_records' is ready
+Collection 'vaccine_records' is ready
+Collection 'doc_appointments' is ready
+Database initialization completed successfully
+Database initialized successfully
