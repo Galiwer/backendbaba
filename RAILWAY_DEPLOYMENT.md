@@ -54,7 +54,9 @@ This guide will help you deploy your Ballerina Health Records backend to Railway
 - `MYSQL_PORT`: MySQL port (default: 3306)
 - `MYSQL_URI`: Complete MySQL connection string (alternative to individual variables)
 
-## Using Railway MySQL Service
+## Using Railway MySQL Service (Internal Communication)
+
+Since both your backend and MySQL are on Railway in the same account, they can communicate internally using Railway's internal networking.
 
 1. **Create MySQL Service**:
    - In Railway dashboard, click "New Service"
@@ -63,16 +65,23 @@ This guide will help you deploy your Ballerina Health Records backend to Railway
 
 2. **Connect Your App**:
    - Railway will automatically inject MySQL environment variables
-   - Your app will connect to the Railway MySQL instance
+   - Your app will connect to the Railway MySQL instance using internal networking
+   - This provides better security and performance
 
-3. **Environment Variables** (automatically set by Railway):
+3. **Environment Variables** (automatically set by Railway for internal communication):
    ```
-   MYSQL_HOST=containers-us-west-XX.railway.app
+   MYSQL_HOST=mysql.railway.internal
    MYSQL_PORT=3306
    MYSQL_USER=root
    MYSQL_PASSWORD=your-railway-mysql-password
    MYSQL_DATABASE=railway
    ```
+
+4. **Benefits of Internal Communication**:
+   - **Security**: No external network exposure
+   - **Performance**: Faster internal network communication
+   - **Reliability**: Railway handles internal service discovery
+   - **Cost**: No external bandwidth charges
 
 ## Database Setup
 
